@@ -1,12 +1,12 @@
 package com.example.greendaodemo.db.manager;
 
 import android.content.Context;
+import android.text.TextUtils;
 
-
+import com.example.greendaodemo.db.DBContext;
 import com.example.greendaodemo.db.entity.DaoMaster;
 import com.example.greendaodemo.db.entity.DaoSession;
 import com.example.greendaodemo.db.entity.UserDao;
-import com.example.greendaodemo.db.entity.UserFriend;
 import com.example.greendaodemo.db.entity.UserFriendDao;
 import com.example.greendaodemo.db.helper.DaoOpenHelper;
 
@@ -17,6 +17,8 @@ import org.greenrobot.greendao.query.QueryBuilder;
  * Created by XHD on 2020/12/10
  */
 public class DaoManager {
+    //    public static final String DB_DIR = Environment.getExternalStorageDirectory().getAbsolutePath() + "/GreendaoDemo/data/databases";//数据库文件目录 外部存储需要权限
+    public static final String DB_DIR = "";//数据库文件目录
     //todo------可自定义数据库名称
     public static final String DB_NAME = "greendaodemo_database.db";//数据库文件名称
     //多线程中要被共享的使用volatile关键字修饰
@@ -28,6 +30,9 @@ public class DaoManager {
 
     public DaoManager(Context context) {
         this.context = context;
+        if (!TextUtils.isEmpty(DB_DIR)) {
+            this.context = new DBContext(context, DB_DIR);
+        }
     }
 
     /**
