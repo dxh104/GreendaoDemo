@@ -23,7 +23,7 @@ public class DaoOpenHelper extends DaoMaster.DevOpenHelper {
     }
 
     /**
-     * 数据库更新
+     * 数据库版本升级
      *
      * @param db
      * @param oldVersion
